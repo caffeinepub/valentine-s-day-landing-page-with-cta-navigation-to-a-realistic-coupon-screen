@@ -1,0 +1,55 @@
+{
+  "kind": "build_request",
+  "title": "Fix deployment error and promote Valentine app draft to live",
+  "priority": "high",
+  "requirements": [
+    {
+      "id": "REQ-14",
+      "text": "Identify and fix the deployment/build error that is preventing the Valentine app from deploying successfully, ensuring the project builds and deploys cleanly.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Please fix it and go live"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A clean build completes without errors.",
+        "A deploy to the Internet Computer completes successfully (no deployment error).",
+        "The deployed app loads in the browser without a runtime crash and both routes ('/' and '/coupon') render correctly."
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "text": "After the deployment/build error is resolved, promote the currently deployed draft version of the Valentine’s app to the live production environment (make the draft go live).",
+      "target": "unknown",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Please fix it and go live"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The live/production environment serves the latest successfully deployed draft build.",
+        "Navigating to the production URL shows the Valentine landing page, and the CTA navigation to the coupon page works end-to-end."
+      ]
+    }
+  ],
+  "constraints": [
+    "Respect the existing single-actor Motoko backend architecture; keep all backend logic in backend/main.mo and add backend/migration.mo only if state upgrades are required.",
+    "Do not edit files under frontend/src/components/ui or any paths listed as immutable in SYSTEM_CONTEXT.",
+    "Use English for any user-facing text."
+  ],
+  "nonGoals": [
+    "Adding new product features beyond fixing the build/deploy issue and promoting the draft to live.",
+    "Introducing external databases, third-party auth providers, or non-supported hosting/deployment platforms."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

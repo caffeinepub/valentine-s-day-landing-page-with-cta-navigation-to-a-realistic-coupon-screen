@@ -1,0 +1,68 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Valentine app: fix build/deploy crashers and ensure production routing/assets work",
+  "requirements": [
+    {
+      "id": "REQ-14",
+      "summary": "Fix frontend build/runtime issues preventing clean deploy; ensure '/' and '/coupon' render without crashes.",
+      "acceptanceCriteria": [
+        "A clean build completes without errors.",
+        "A deploy to the Internet Computer completes successfully (no deployment error).",
+        "The deployed app loads in the browser without a runtime crash and both routes ('/' and '/coupon') render correctly."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useInternetIdentity.ts",
+          "operation": "modify",
+          "description": "Remove/replace the direct `process.env.II_URL` usage with a bundler-safe environment lookup (e.g., `import.meta.env` with a safe fallback) to prevent production runtime crashes where `process` is undefined. Verify the core-infrastructure component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/public/assets/generated/valentine-bg.dim_1920x1080.png",
+          "operation": "create",
+          "description": "Add the generated background image asset at the expected static path so production builds can reliably load it: frontend/public/assets/generated/valentine-bg.dim_1920x1080.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/coupon-paper-texture.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated coupon texture asset at the expected static path so production builds can reliably load it: frontend/public/assets/generated/coupon-paper-texture.dim_1024x1024.png."
+        },
+        {
+          "path": "frontend/src/pages/ValentineLanding.tsx",
+          "operation": "modify",
+          "description": "Verify the landing page background image reference aligns with the deployed static asset location (ensure it matches frontend/public/assets/generated/valentine-bg.dim_1920x1080.png) so the route '/' renders without missing-asset errors. Verify the initial-app component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/CouponCard.tsx",
+          "operation": "modify",
+          "description": "Verify the coupon paper texture reference aligns with the deployed static asset location (ensure it matches frontend/public/assets/generated/coupon-paper-texture.dim_1024x1024.png) so the route '/coupon' renders without missing-asset errors. Verify the shadcn-ui component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "summary": "Ensure the latest draft build is production-ready to be promoted live, including end-to-end navigation and direct-load support for '/coupon'.",
+      "acceptanceCriteria": [
+        "The live/production environment serves the latest successfully deployed draft build.",
+        "Navigating to the production URL shows the Valentine landing page, and the CTA navigation to the coupon page works end-to-end."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/coupon/index.html",
+          "operation": "create",
+          "description": "Add a static entry file for the '/coupon' path (mirroring the main app entry) so that direct navigation/refresh on '/coupon' loads the SPA and renders the coupon route correctly on the Internet Computer."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Confirm routing remains registered for both '/' and '/coupon' and that navigation to '/coupon' is compatible with the production hosting setup (including direct-load behavior supported by frontend/public/coupon/index.html). Verify the build-template-react component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Ensure the production app entry remains correct and consistent with any additional static route entries (e.g., keep module entry and mounting intact) so the promoted live build matches the tested draft. Verify the github-export-icp-cli component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

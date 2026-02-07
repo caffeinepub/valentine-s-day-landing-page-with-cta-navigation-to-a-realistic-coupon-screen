@@ -1,0 +1,41 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-07T15:11:15.348Z",
+  "summary": "Diff adds a static HTML entry point for the /coupon route and replaces the Motoko backend actor with an empty actor. There is no evidence in the provided diff summary of changes that explicitly promote a draft deployment to live/production, and the backend change appears unrelated to the stated goals and violates the stated constraint to respect the existing backend architecture.",
+  "missing_requirements": [
+    {
+      "id": "REQ-14",
+      "requirement": "Identify and fix the deployment/build error preventing successful deploy; ensure clean build/deploy and both '/' and '/coupon' routes render.",
+      "reason": "The diff summary does not provide direct evidence that the deployment/build error was identified and fixed end-to-end (e.g., config/build pipeline/deploy settings). It also shows backend/main.mo reduced to an empty actor, which could break existing functionality rather than fix deployment. While adding frontend/public/coupon/index.html may help /coupon refresh routing, that alone does not demonstrate a clean build + successful IC deploy + runtime correctness.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/public/coupon/index.html"
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "requirement": "Promote the currently deployed draft Valentine app to the live production environment (make the draft go live).",
+      "reason": "No evidence of any production/draft promotion mechanism changes (e.g., deployment config, environment switching, release steps, CI/CD, dfx configuration) is present in the diff summary.",
+      "evidence": [
+        "<file-diff> summary shows no deployment/config changes beyond app files"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Backend actor logic removed/replaced with an empty Motoko actor (potentially disabling existing backend behavior).",
+      "reason": "The BuildRequest focuses on fixing a deployment/build error and promoting a draft to live while respecting the existing single-actor Motoko backend architecture. Replacing backend/main.mo with `actor {};` is not requested and appears to be an unrelated/destructive change rather than a targeted deployment fix.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "confidence": 0.62,
+  "changed_files": [
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/public/coupon/index.html",
+    "project_state.json"
+  ]
+}

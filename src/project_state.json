@@ -1,0 +1,177 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 15,
+  "summary": "Website with a Valentine's Day themed landing page and CTA that navigates to a second screen displaying a realistic, centered coupon with specified details and mindful Valentine's color palette.",
+  "architectural_notes": [
+    "Fix routing architecture in App.tsx: ensure RouterProvider is instantiated once at the top-level and route components (e.g., rootRoute) render via <Outlet /> rather than trying to render <RouterProvider> inside a route definition."
+  ],
+  "known_issues": [
+    "Runtime crash prevents review: App.tsx uses the router before it is created (rootRoute renders <RouterProvider router={router}> but router is defined later).",
+    "Deployment error is preventing the draft from being promoted/deployed to live."
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-create-a-valentine-s-day-themed-landing-screen-that-displays-a-beautiful-valentine-s-day-message-and-a-prominent-cta-button-labeled-exactly-click-to-avail-your-valentine-s-day-coupon",
+      "title": "Create a Valentine’s Day themed landing screen that displays a beautiful Valentine’s Day message and a prominent CTA button labeled exactly: \"click to avail your Valentine's day coupon\".",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-lovely-full-page-background-that-covers-the-entire-visible-page-area-no-plain-unstyled-whitespace-on-the-landing-screen-consistent-with-a-valentine-s-day-theme",
+      "title": "Apply a lovely full-page background that covers the entire visible page area (no plain/unstyled whitespace) on the landing screen, consistent with a Valentine’s Day theme.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-navigation-so-that-clicking-the-landing-page-cta-transitions-the-user-to-a-second-screen-new-route-view-dedicated-to-displaying-the-coupon",
+      "title": "Implement navigation so that clicking the landing-page CTA transitions the user to a second screen (new route/view) dedicated to displaying the coupon.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-second-screen-render-a-realistic-looking-coupon-card-placed-at-the-center-of-the-screen-both-vertically-and-horizontally-with-the-following-exact-text-content-and-hierarchy-header-free-kisses-and-hugs-then-fields-to-shubham-kumar-users-unlimited-expiration-never-redemption-code-your-deep-romantic-voice",
+      "title": "On the second screen, render a realistic-looking coupon card placed at the center of the screen (both vertically and horizontally) with the following exact text content and hierarchy: Header: \"Free Kisses and Hugs\"; then fields: \"To: Shubham Kumar\", \"Users: Unlimited\", \"Expiration: Never\", \"Redemption Code: Your deep, romantic voice\".",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-use-a-mindful-valentine-s-day-color-palette-and-ensure-the-styling-across-both-screens-looks-beautiful-and-cohesive-choose-one-distinct-visual-theme-typography-spacing-and-ui-styling-and-apply-it-consistently-avoid-default-template-styling",
+      "title": "Use a mindful Valentine’s Day color palette and ensure the styling across both screens looks \"beautiful\" and cohesive; choose one distinct visual theme (typography, spacing, and UI styling) and apply it consistently (avoid default/template styling).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-and-use-generated-static-image-assets-for-the-full-page-background-and-optionally-subtle-coupon-texture-stored-in-frontend-public-assets-generated-and-reference-them-directly-from-the-frontend-do-not-route-images-through-the-backend",
+      "title": "Add and use generated static image assets for the full-page background and (optionally) subtle coupon texture, stored in frontend/public/assets/generated, and reference them directly from the frontend (do not route images through the backend).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-runtime-crash-in-frontend-src-app-tsx-by-restructuring-the-tanstack-router-setup-so-that-no-route-component-references-the-router-instance-before-it-is-created-e-g-the-root-route-must-not-render-routerprovider-router-router-while-router-is-defined-later",
+      "title": "Fix the runtime crash in frontend/src/App.tsx by restructuring the TanStack Router setup so that no route component references the router instance before it is created (e.g., the root route must not render <RouterProvider router={router}> while router is defined later).",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-tanstack-router-initialization-in-frontend-src-app-tsx-so-that-no-route-component-references-the-router-instance-before-it-is-created-specifically-remove-routerprovider-router-router-from-the-root-route-component-and-render-an-outlet-or-equivalent-in-the-root-route-instead-and-ensure-routerprovider-router-router-is-rendered-only-once-inside-app-after-the-router-is-created",
+      "title": "Fix the TanStack Router initialization in frontend/src/App.tsx so that no route component references the router instance before it is created. Specifically, remove <RouterProvider router={router}> from the root route component and render an <Outlet /> (or equivalent) in the root route instead, and ensure <RouterProvider router={router}> is rendered only once inside App() after the router is created.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-simple-in-app-edit-text-mode-that-lets-the-user-update-the-key-text-strings-shown-on-the-valentine-landing-page-and-the-coupon-card-without-requiring-code-changes",
+      "title": "Add a simple in-app \"Edit text\" mode that lets the user update the key text strings shown on the Valentine landing page and the coupon card, without requiring code changes.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-persist-the-edited-text-values-locally-in-the-browser-so-the-customized-text-remains-after-a-page-refresh",
+      "title": "Persist the edited text values locally in the browser so the customized text remains after a page refresh.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-preserve-the-current-shipped-default-copy-as-the-initial-values-shown-before-any-edits-are-made-including-the-existing-required-cta-label-and-coupon-field-defaults",
+      "title": "Preserve the current shipped default copy as the initial values shown before any edits are made, including the existing required CTA label and coupon field defaults.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-promote-the-currently-deployed-draft-version-of-the-valentine-s-app-to-the-live-production-environment-make-the-draft-go-live-without-changing-application-code",
+      "title": "Promote the currently deployed draft version of the Valentine’s app to the live production environment (make the draft go live) without changing application code.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-after-the-deployment-build-error-is-resolved-promote-the-currently-deployed-draft-version-of-the-valentine-s-app-to-the-live-production-environment-make-the-draft-go-live",
+      "title": "After the deployment/build error is resolved, promote the currently deployed draft version of the Valentine’s app to the live production environment (make the draft go live).",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a Valentine's Day landing page with a beautiful message, full-page lovely background, and a CTA button labeled \"click to avail your Valentine's day coupon\".",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Implement CTA navigation to a second screen that displays a realistic, centered Valentine's-themed coupon.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Design the coupon to include: header \"Free Kisses and Hugs\"; To: Shubham Kumar; Users: Unlimited; Expiration: Never; Redemption Code: Your deep, romantic voice.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Apply a mindful Valentine's Day color palette and overall beautiful styling across both screens.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Allow editing/updating a few text strings in the app (e.g., landing page message/CTA and/or coupon text).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Promote the currently deployed draft version of the app to the live production environment (i.e., make the draft go live) without changing application code.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Fix the deployment/build error so the app can be deployed successfully and made live (go live).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Identify and fix the deployment/build error that is preventing the Valentine app from deploying successfully, ensuring the project builds and deploys cleanly.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Valentine’s Day landing page with CTA navigation to a realistic coupon screen",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

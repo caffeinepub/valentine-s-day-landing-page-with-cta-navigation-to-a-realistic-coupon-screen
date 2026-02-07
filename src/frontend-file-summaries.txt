@@ -1,0 +1,15 @@
+{
+  "frontend/src/App.tsx": "Main application component that wraps the router with CopyProvider so both landing and coupon routes share editable copy state and edit panel access.",
+  "frontend/src/pages/ValentineLanding.tsx": "Valentine's Day landing page with romantic message, background image, animated hearts, CTA button, and \"Edit Text\" control that opens the edit panel; all text now sourced from copy context.",
+  "frontend/src/pages/CouponPage.tsx": "Coupon display page with centered coupon card, decorative background, back button, \"Edit Text\" control, and footer.",
+  "frontend/src/components/CouponCard.tsx": "Realistic Valentine's coupon component with ticket-style design and all required fields now sourced from copy context with word-break styling for layout stability.",
+  "frontend/src/index.css": "Global styles with Valentine's Day themed OKLCH color system (warm rose/pink tones), custom CTA button styling, typography, and animations.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with Valentine's theme colors and custom shadow utilities for romantic aesthetic.",
+  "frontend/src/hooks/useQueries.ts": "Empty file as no backend queries are required for this static Valentine's Day application.",
+  "frontend/src/content/defaultCopy.ts": "Defines the AppCopy interface and exports the default copy values for all editable text fields (landing headline, subheadline, quote, CTA label, coupon header, recipient name, and redemption code).",
+  "frontend/src/content/storage.ts": "Provides localStorage helpers to load, save, clear, and initialize editable copy with defensive parsing and fallback to defaults.",
+  "frontend/src/content/CopyContext.tsx": "React context provider that manages current copy state, edit mode, draft edits, and actions (enter/exit edit mode, update/save/cancel draft, reset to defaults) with localStorage persistence.",
+  "frontend/src/components/EditTextPanel.tsx": "Modal overlay component with form inputs for editing all text fields, featuring Save, Cancel, and Reset to Defaults buttons with scrollable content area.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Internet Identity provider hook that manages authentication state, login/logout actions, and identity persistence; fixed to use import.meta.env instead of process.env for Vite production build compatibility.",
+  "frontend/public/coupon/index.html": "Static HTML entry point for the /coupon route to enable direct navigation and page refresh support on the Internet Computer hosting environment."
+}
